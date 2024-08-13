@@ -1,0 +1,82 @@
+﻿@using CoSoKTPM.Models;
+
+@{
+    ViewBag.Title = "Index";
+    List<DonHang> ds = ViewData["DanhsachDH"] as List<DonHang>;
+}
+<style>
+    form {
+        display: inline;
+    }
+</style>
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Danh sách đơn hàng mới tạo</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Dashboard")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href='@Url.Action("Index", "NewOrder")'>Danh sách đơn hàng mới</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Dữ liệu</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>Mã KH</th>
+                                        <th>Số ĐH</th>
+                                        <th>Tài khoản</th>
+                                        <th>Ngày ĐH</th>
+                                        <th>Ngày GH</th>
+                                        <th>Địa chỉ GH</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        foreach (DonHang i in ds)
+                                        {
+                                            <tr>
+                                                <td>@i.MaKH</td>
+                                                <td>@i.SoDH</td>
+                                                <td>@i.TaiKhoan1.HoDem @i.TaiKhoan1.TenTV</td>
+                                                <td>@string.Format("{0: hh:mm [dd/MM/yyyy]}", i.NgayDat)</td>
+                                                <td>@string.Format("{0: hh:mm [dd/MM/yyyy]}", i.NgayGH)</td>
+                                                <td>@i.DiaChiGH</td>
+                                                <td>
+                                                    @using (Html.BeginForm("Active", "NewOrder", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="maBaiViet" value="@i.SoDH" />
+                                                        <button class="btn btn-success" title="Cho phép hiển thị đơn hàng">@ViewBag.taCuaNut</button>
+                                                    }
+                                                    @using (Html.BeginForm("Delete", "NewOrder", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="maBaiViet" value="@i.SoDH" />
+                                                        <button class="btn btn-danger" title="Xóa đơn hàng...">Xóa</button>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                     }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

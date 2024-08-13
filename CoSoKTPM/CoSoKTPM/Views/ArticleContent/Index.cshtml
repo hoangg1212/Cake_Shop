@@ -1,0 +1,38 @@
+﻿@using CoSoKTPM.Models
+@{
+    ViewBag.Title = "Index";
+    BaiViet x = ViewData["BaiCanXem"] as BaiViet;
+}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Home")'>Home</a></li>
+                    <li class="breadcrumb-item active">Chi tiết bài viết</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start About Page  -->
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="banner-frame">
+                    <img class="img-fluid" src="@x.HinhDD" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="title-blog">
+                    <h3 ><a >@x.TenBV</a></h3>
+                    <p>@x.NoiDung</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End About Page -->

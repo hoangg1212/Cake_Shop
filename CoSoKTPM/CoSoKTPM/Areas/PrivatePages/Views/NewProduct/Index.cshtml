@@ -1,0 +1,140 @@
+﻿@model CoSoKTPM.Models.SanPham
+@{
+    ViewBag.Title = "Index";
+}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Đăng sản phẩm mới</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Dashboard")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href='@Url.Action("Index", "NewProduct")'>Sản phẩm mới</a></li>
+                </ol>
+            </div>
+        </div>
+        @using (Html.BeginForm("Index", "NewProducts", FormMethod.Post))
+        {
+            <!--nội dung-->
+            <div class="row">
+                <!--Left colum-->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Hình minh họa cho sản phẩm</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="card-body">
+                            <img src="@ViewBag.HinhDD" /><br />
+                            <label for="exampleInputFile">File input</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" id="exampleInputFile">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+
+                <!--right colum-->
+                <div class="col-md-8">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin chính</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-validation">
+                                <form class="form-valide" action="#" method="post">
+                                    <div class="form-group">
+                                        <label for="val-username">Tên sản phẩm<span class="text-danger">*</span></label>
+                                        @Html.TextBoxFor(m => m.TenSP, new { @class = "form-control", @id = "val-username", @name = "val-username", @placeholder = "Nhập tên sản phẩm..." })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="val-suggestions"> Nội dung tóm tắt <span class="text-danger">*</span></label>
+                                        @Html.TextAreaFor(m => m.NdTomTat, new { @class = "form-control", @id = "val-suggestions", @name = "val-suggestions", @rows = "5", @placeholder = "Nhập nội dung..." })
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="val-email"> Mã loại <span class="text-danger">*</span></label>
+                                                @Html.TextBoxFor(m => m.MaLoai, new { @class = "form-control", @id = "val-username", @name = "val-username", @placeholder = "Nhập mã loại..." })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="val-email"> Giá bán <span class="text-danger">*</span></label>
+                                                @Html.TextBoxFor(m => m.GiaBan, new { @class = "form-control", @id = "val-username", @name = "val-username", @placeholder = "Nhập giá bán..." })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="val-email"> Giảm giá (%) <span class="text-danger">*</span></label>
+                                                @Html.TextBoxFor(m => m.GiamGia, new { @class = "form-control", @id = "val-email", @name = "val-email", @disabled = "disabled" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="val-email"> Nhà sản xuất <span class="text-danger">*</span></label>
+                                                @Html.TextBoxFor(m => m.NhaSanXuat, new { @class = "form-control", @id = "val-username", @name = "val-username", @placeholder = "Nhập tên NSX..." })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="val-email"> Đơn vị tính <span class="text-danger">*</span></label>
+                                                @Html.TextBoxFor(m => m.DVT, new { @class = "form-control", @id = "val-username", @name = "val-username", @placeholder = "Đơn vị tính" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Ngày đăng</label>
+                                                @Html.TextBoxFor(m => m.NgayDang, new { @class = "form-control", @id = "date-format", @disabled = "disabled", @placeholder = "Ngày đăng...." })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="val-email"> Tài khoản <span class="text-danger">*</span></label>
+                                                @Html.TextBoxFor(m => m.TaiKhoan, new { @class = "form-control", @id = "val-email", @name = "val-email", @disabled = "disabled" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input id="checkbox1" class="form-check-input" type="checkbox">
+                                            <label for="checkbox1" class="form-check-label">Kiểm duyệt sản phẩm</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-xxl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Giới thiệu chi tiết về sản phẩm</h3>
+                        </div>
+                        <div class="card-body">
+                            @Html.TextAreaFor(m => m.NoiDung, new
+                            {
+                                @class = "summernote",
+                                @placeholder = "Place some text here",
+                            })
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Đăng sản phẩm</button>
+                </div>
+            </div>
+         }
+    </div>
+</div>

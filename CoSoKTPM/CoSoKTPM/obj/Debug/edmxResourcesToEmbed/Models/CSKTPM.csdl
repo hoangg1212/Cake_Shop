@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DoAnCSKTPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BaiViet">
+    <Key>
+      <PropertyRef Name="MaBV" />
+    </Key>
+    <Property Name="MaBV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenBV" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HinhDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NdTomTat" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDang" Type="DateTime" Precision="3" />
+    <Property Name="LoaiTin" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DaDuyet" Type="Boolean" />
+    <NavigationProperty Name="TaiKhoan1" Relationship="Self.FK__BaiViet__TaiKhoa__2C3393D0" FromRole="BaiViet" ToRole="TaiKhoan" />
+    <Property Name="SoLanDoc" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CtDonHang">
+    <Key>
+      <PropertyRef Name="SoDH" />
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="SoDH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="GiaBan" Type="Int64" />
+    <Property Name="GiamGia" Type="Int64" />
+    <NavigationProperty Name="SanPham" Relationship="Self.FK__CtDonHang__MaSP__44FF419A" FromRole="CtDonHang" ToRole="SanPham" />
+    <NavigationProperty Name="DonHang" Relationship="Self.FK__CtDonHang__SoDH__440B1D61" FromRole="CtDonHang" ToRole="DonHang" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="SoDH" />
+    </Key>
+    <Property Name="SoDH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NgayDat" Type="DateTime" Precision="3" />
+    <Property Name="DaKichHoat" Type="Boolean" />
+    <Property Name="NgayGH" Type="DateTime" Precision="3" />
+    <Property Name="DiaChiGH" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CtDonHangs" Relationship="Self.FK__CtDonHang__SoDH__440B1D61" FromRole="DonHang" ToRole="CtDonHang" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK__DonHang__MaKH__3F466844" FromRole="DonHang" ToRole="KhachHang" />
+    <NavigationProperty Name="TaiKhoan1" Relationship="Self.FK__DonHang__TaiKhoa__403A8C7D" FromRole="DonHang" ToRole="TaiKhoan" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__MaKH__3F466844" FromRole="KhachHang" ToRole="DonHang" />
+  </EntityType>
+  <EntityType Name="LoaiSP">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="88" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SanPhams" Relationship="Self.FK__SanPham__MaLoai__34C8D9D1" FromRole="LoaiSP" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenSP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HinhDD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NdTomTat" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDang" Type="DateTime" Precision="3" />
+    <Property Name="MaLoai" Type="Int32" Nullable="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TaiKhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DVT" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="DaDuyet" Type="Boolean" />
+    <Property Name="GiaBan" Type="Int32" />
+    <Property Name="GiamGia" Type="Int32" />
+    <Property Name="NhaSanXuat" Type="String" MaxLength="168" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CtDonHangs" Relationship="Self.FK__CtDonHang__MaSP__44FF419A" FromRole="SanPham" ToRole="CtDonHang" />
+    <NavigationProperty Name="LoaiSP" Relationship="Self.FK__SanPham__MaLoai__34C8D9D1" FromRole="SanPham" ToRole="LoaiSP" />
+    <NavigationProperty Name="TaiKhoan1" Relationship="Self.FK__SanPham__TaiKhoa__36B12243" FromRole="SanPham" ToRole="TaiKhoan" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="TaiKhoan1" />
+    </Key>
+    <Property Name="TaiKhoan1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="HoDem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenTV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ĐiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BaiViets" Relationship="Self.FK__BaiViet__TaiKhoa__2C3393D0" FromRole="TaiKhoan" ToRole="BaiViet" />
+    <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__TaiKhoa__403A8C7D" FromRole="TaiKhoan" ToRole="DonHang" />
+    <NavigationProperty Name="SanPhams" Relationship="Self.FK__SanPham__TaiKhoa__36B12243" FromRole="TaiKhoan" ToRole="SanPham" />
+  </EntityType>
+  <Association Name="FK__BaiViet__TaiKhoa__2C3393D0">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TaiKhoan1" />
+      </Principal>
+      <Dependent Role="BaiViet">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CtDonHang__MaSP__44FF419A">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="CtDonHang" Type="Self.CtDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="CtDonHang">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CtDonHang__SoDH__440B1D61">
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
+    <End Role="CtDonHang" Type="Self.CtDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="SoDH" />
+      </Principal>
+      <Dependent Role="CtDonHang">
+        <PropertyRef Name="SoDH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonHang__MaKH__3F466844">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonHang__TaiKhoa__403A8C7D">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TaiKhoan1" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPham__MaLoai__34C8D9D1">
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPham__TaiKhoa__36B12243">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="TaiKhoan1" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="TaiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CoSoKTPMConnect" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BaiViets" EntityType="Self.BaiViet" />
+    <EntitySet Name="CtDonHangs" EntityType="Self.CtDonHang" />
+    <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="LoaiSPs" EntityType="Self.LoaiSP" />
+    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+    <AssociationSet Name="FK__BaiViet__TaiKhoa__2C3393D0" Association="Self.FK__BaiViet__TaiKhoa__2C3393D0">
+      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+      <End Role="BaiViet" EntitySet="BaiViets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CtDonHang__MaSP__44FF419A" Association="Self.FK__CtDonHang__MaSP__44FF419A">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="CtDonHang" EntitySet="CtDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CtDonHang__SoDH__440B1D61" Association="Self.FK__CtDonHang__SoDH__440B1D61">
+      <End Role="DonHang" EntitySet="DonHangs" />
+      <End Role="CtDonHang" EntitySet="CtDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonHang__MaKH__3F466844" Association="Self.FK__DonHang__MaKH__3F466844">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonHang__TaiKhoa__403A8C7D" Association="Self.FK__DonHang__TaiKhoa__403A8C7D">
+      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPham__MaLoai__34C8D9D1" Association="Self.FK__SanPham__MaLoai__34C8D9D1">
+      <End Role="LoaiSP" EntitySet="LoaiSPs" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPham__TaiKhoa__36B12243" Association="Self.FK__SanPham__TaiKhoa__36B12243">
+      <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

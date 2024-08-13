@@ -1,0 +1,244 @@
+﻿@model CoSoKTPM.Models.KhachHang
+@using CoSoKTPM.Models
+
+@{
+    ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Home")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Kiểm tra thanh toán</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start Cart  -->
+<div class="cart-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 mb-3">
+                @using (Html.BeginForm("SaveToDataBase", "CheckOut", FormMethod.Post))
+                {
+                    <div class="checkout-address">
+                        <div class="title-left">
+                            <h3>Thông tin khách hàng</h3>
+                        </div>
+                        <form class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="firstName">Họ tên *</label>
+                                @Html.TextBoxFor(m => m.TenKH, new { @class = "form-control", @id = "firstName", @placeholder = "", @type = "text" })
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="firstName">@Html.RadioButtonFor(m => m.GioiTinh, new { @name = "GioiTinh" }) Nam</label>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="firstName">@Html.RadioButton("GioiTinh", false) Nữ</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-6">
+                                    <label for="NgaySinh">Ngày sinh</label>
+                                    @Html.TextBoxFor(m => m.NgaySinh, new { @type = "date", @class = "form-control" })
+                                </div>
+                                <div class="col-md-6 mb-6">
+                                    <label for="username">SDT *</label>
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.SDT, new { @type = "text", @class = "form-control", @id = "username", @placeholder = "" })
+                                        <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-6">
+                                    <label for="email">Email *</label>
+                                    @Html.TextBoxFor(m => m.Email, new { @type = "email", @class = "form-control", @id = "email", @placeholder = "" })
+                                    <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                                </div>
+                                <div class="col-md-6 mb-6">
+                                    <label for="address">Địa chỉ *</label>
+                                    @Html.TextBoxFor(m => m.DiaChi, new { @type = "text", @class = "form-control", @id = "address", @placeholder = "" })
+                                    <div class="invalid-feedback"> Please enter your shipping address. </div>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
+                                        <option value="" selected>Chọn tỉnh thành</option>
+                                    </select>
+                                    <div class="invalid-feedback"> Please select a valid country. </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">
+                                        <option value="" selected>Chọn quận huyện</option>
+                                    </select>
+                                    <div class="invalid-feedback"> Please provide a valid state. </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">
+                                        <option value="" selected>Chọn phường xã</option>
+                                    </select>
+                                    <div class="invalid-feedback"> Zip code required. </div>
+                                </div>
+                                <input class="billing_address_1" name="" type="hidden" value="">
+                                <input class="billing_address_2" name="" type="hidden" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="firstName">Ghi chú</label>
+                                @Html.TextBoxFor(m => m.GhiChu, new { @type = "text", @class = "form-control", @id = "address", @placeholder = "Thông tin ghi chú", @rows = "8", @style = "padding-bottm: 9px;" })
+                                <div class="invalid-feedback"> Valid first name is required. </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="save-info">
+                                <label class="custom-control-label" for="save-info">Lưu thông tin cho những lần sau</label>
+                            </div>
+                            <hr class="mb-4">
+                            <div class="row">
+                                <div class="col-md-6" style="text-align:center">
+                                    <a href='@Url.Action("Index", "Cart")' class="ml-auto btn hvr-hover">&lt;&lt; Quay lại giỏ hàng</a>
+                                </div>
+                                <div class="col-md-6" style="text-align:center">
+                                    <button class="ml-auto btn hvr-hover">Thanh toán</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+            <div class="col-sm-6 col-lg-6 mb-3">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="shipping-method-box">
+                            <div class="title-left">
+                                <h3>Phương thức giao hàng</h3>
+                            </div>
+                            <div class="mb-4">
+                                <div class="custom-control custom-radio">
+                                    <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio">
+                                    <label class="custom-control-label" for="shippingOption1">Hỏa tốc</label> <span class="float-right font-weight-bold">47.000 đ</span>
+                                </div>
+                                <div class="ml-4 mb-2 small">(5 - 8 giờ)</div>
+                                <div class="custom-control custom-radio">
+                                    <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio">
+                                    <label class="custom-control-label" for="shippingOption2">Nhanh</label> <span class="float-right font-weight-bold">28.000 đ</span>
+                                </div>
+                                <div class="ml-4 mb-2 small">(1 - 4 ngày)</div>
+                                <div class="custom-control custom-radio">
+                                    <input id="shippingOption3" name="shipping-option" class="custom-control-input" type="radio">
+                                    <label class="custom-control-label" for="shippingOption3">Tiết kiệm</label> <span class="float-right font-weight-bold">20.000 đ</span>
+                                </div>
+                                <div class="ml-4 mb-2 small">(2 - 6 ngày)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12">
+                        <div class="order-box">
+                            <div class="title-left">
+                                <h3>Đơn hàng của bạn</h3>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Tổng trị giá</h4>
+                                <div class="ml-auto font-weight-bold">@String.Format("{0:#,##0 đ }", x.totalOfCartShop())</div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Áp dụng giảm giá</h4>
+                                <div class="ml-auto font-weight-bold"></div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Thuế</h4>
+                                <div class="ml-auto font-weight-bold">@String.Format("{0:#,##0 đ }", (x.totalOfCartShop() * 10) / 100)</div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Phí vận chuyển</h4>
+                                <div class="ml-auto font-weight-bold"> Free </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex gr-total">
+                                <h5>Tổng cộng</h5>
+                                <div class="ml-auto h5">@String.Format("{0:#,##0 đ }", x.totalOfCartShop() + (x.totalOfCartShop() * 10) / 100)</div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="title"> <span>Phương thức thanh toán</span> </div>
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <label class="custom-control-label" for="credit">Thanh toán khi nhận hàng</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="paypal">Thẻ tín dụng/Ghi nợ</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-1">
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="odr-box">
+                    <div class="title-left">
+                        <h3>Thông tin mặt hàng bạn đã chọn</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-main table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Hình ảnh</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Giá bán</th>
+                                            <th>Số lượng</th>
+                                            <th>Thành tiền</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (CtDonHang i in x.SanPhamDC.Values)
+                                            {
+                                                <tr>
+                                                    <td class="thumbnail-img">
+                                                        <a href="#"><img class="img-fluid" src="@Common.getImageOfProductByID(i.MaSP)" alt="" /></a>
+                                                    </td>
+                                                    <td class="name-pr">
+                                                        <a href="#">@Common.getNameOfProductByID(i.MaSP)</a>
+                                                    </td>
+                                                    <td class="price-pr">
+                                                        <p>@String.Format("{0:#,##0 đ }", i.GiaBan)</p>
+                                                    </td>
+                                                    <td quantity-box>
+                                                        <p>@i.SoLuong</p>
+                                                    </td>
+                                                    <td class="total-pr">
+                                                        <p>@String.Format("{0:#,##0 đ }", x.moneyOfOneProduct(i))</p>
+                                                    </td>
+                                                    <td class="delete-pr">
+                                                        @using (Html.BeginForm("RemoveItem", "Cart", FormMethod.Post))
+                                                        {
+                                                            <input type="hidden" name="maSP" value="@i.MaSP" />
+                                                            <button class="fas fa-times"> </button>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End Cart -->

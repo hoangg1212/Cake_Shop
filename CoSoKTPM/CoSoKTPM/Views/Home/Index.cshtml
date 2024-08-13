@@ -1,0 +1,167 @@
+﻿@using CoSoKTPM.Models
+@{
+    ViewBag.Title = "Index";
+}
+<!-- Start Slider -->
+<div id="slides-shop" class="cover-slides">
+    <ul class="slides-container">
+        <li class="text-center">
+            <img src="~/Images/hinhnen1.jpg" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Chào mừng bạn đến với<br> Huy Hoang Bakery</strong></h1>
+                        <p class="m-b-40">We will bring you back to your childhood with our products <br>Chúng tôi sẽ đưa bạn quay lại tuổi thơ bằng những sản phẩm của chúng tôi </p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="~/Images/hinhnen4.jpg" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Chào mừng bạn đến với<br> Huy Hoang Bakery</strong></h1>
+                        <p class="m-b-40">We will bring you back to your childhood with our products <br>Chúng tôi sẽ đưa bạn quay lại tuổi thơ bằng những sản phẩm của chúng tôi </p>
+                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="~/Images/hinhnen3.jpg" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Chào mừng bạn đến với<br> Huy Hoang Bakery</strong></h1>
+                        <p class="m-b-40">We will bring you back to your childhood with our products <br>Chúng tôi sẽ đưa bạn quay lại tuổi thơ bằng những sản phẩm của chúng tôi </p>
+                        <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
+</div>
+<!-- End Slider -->
+<!-- Start Products  -->
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Sản phẩm</h1>
+                    <p>Sản phẩm của chúng tôi sẽ đem bạn trở về với tuổi thơ</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center" role="tabpanel" data-example-id="togglable-tabs">
+                    <div class="row special-list" id="myTabContent">
+                        @{ 
+                            int m = 0;
+                            foreach(LoaiSP i in Common.getCategories())
+                            {
+                                <div role="tabpanel @(m++ ==0?"active":"")" id="@i.MaLoai" aria-labelledby="@i.MaLoai">
+                                    <div class="agile_ecommerce_tabs">
+                                        @{ 
+                                            int n = 1;
+                                            foreach (SanPham j in Common.getProductsByLoaiSP(i.MaLoai))
+                                            {
+                                                <div class="col-lg-3 col-md-6 special-grid top-featured">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">- @j.GiamGia %</p>
+                                                            </div>
+                                                            <img src="@j.HinhDD" class="img-fluid">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href='@Url.Action("Index" , "ProductsDetail", new {MaSP = j.MaSP })' data-toggle="tooltip" data-placement="right" title="Chi tiết"><i class="fas fa-eye"></i></a></li>
+                                                                    <li><a href='@Url.Action("Index" , "Gallery")' data-toggle="tooltip" data-placement="right" title="Hình ảnh"><i class="fas fa-sync-alt"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                @using (Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                                                                {
+                                                                    <input type="hidden" name="MaSP" value="@j.MaSP" />
+                                                                    <button class="cart btn hvr-hover" style="margin-top: 160px">Thêm vào giỏ hàng</button>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text" style="min-height: 113px; text-align:center">
+                                                            <h4><a href='@Url.Action("Index" , "ProductsDetail", new {MaSP = j.MaSP })'>@j.NdTomTat</a></h4>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <h4><span><del>@String.Format("{0:#,##0 đ }", j.GiaBan)</del></span></h4>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <h5>@String.Format("{0:#,##0 đ }", (j.GiaBan * 80) / 100)</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                if (n++ == 4)
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Products  -->
+<!-- Start Blog  -->
+<div class="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Bài viết giới thiệu</h1>
+                    <p>Bài viết dựa trên phản hồi, đánh giả của khách hàng về sản phẩm của chúng tôi</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @{ 
+                foreach(BaiViet k in Common.getArticles(2))
+                {
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div class="blog-box">
+                                <div class="blog-img" style="text-align:center">
+                                    <img class="img-fluid" src="@k.HinhDD" alt="" />
+                                </div>
+                                <div class="blog-content"style="min-height: 120px">
+                                    <div class="date"style="text-align:center">
+                                        <p>@string.Format("{0: MMMM dd yyyy }", k.NgayDang) in <a href="">@k.LoaiTin</a> </p>
+                                    </div>
+                                    <div class="title-blog">
+                                        <h3 style="text-align:center"><a href="@Url.Action("Index", "ArticleContent", new { maBV = k.MaBV})">@k.TenBV</a></h3>
+                                        <p>@k.NdTomTat</p>
+                                    </div>
+                                    <ul class="option-blog">
+                                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                                        <li><a href='@Url.Action("Index", "ArticleContent", new { maBV = k.MaBV})'title="Chi tiết"><i class="fas fa-eye"></i></a></li>
+                                        <li><a href="#"><i class="far fa-comments"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- End Blog  -->
+

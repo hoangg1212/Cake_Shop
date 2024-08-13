@@ -1,0 +1,117 @@
+﻿@using CoSoKTPM.Models
+@{
+    ViewBag.Title = "Index";
+}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Home")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Bánh Ngọt</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start Shop Page  -->
+<!-- Start Shop Page  -->
+<div class="shop-box-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-sm-12 col-xs-12 ">
+                <div class="right-product-box">
+                    <div class="product-item-filter row">
+                        <div class="col-12 col-sm-6 text-center text-sm-left">
+                            <div class="toolbar-sorter-right">
+                                <span>Sắp xếp </span>
+                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                    <option data-display="Select">Phổ biến</option>
+                                    <option value="1">Bán chạy</option>
+                                    <option value="2">Giá thấp -> cao</option>
+                                    <option value="3">Giá cao -> thấp</option>
+                                </select>
+                            </div>
+                            <p>Hiển thị dưới dạng</p>
+                        </div>
+                        <div class="col-12 col-sm-3 text-center text-sm-right">
+                            <ul class="nav nav-tabs ml-auto">
+                                <li>
+                                    <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-sm-3 text-center text-sm-right">
+                            <div class="search-product">
+                                <form action="#">
+                                    <input class="form-control" placeholder="Tìm kiếm..." type="text">
+                                    <button type="submit"> <i class="fa fa-search"></i> </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                        @{
+                                            int n = 1;
+                                            foreach (SanPham j in Common.getProductsByLoaiSP(7))
+                                            {
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                    <div class="products-single fix">
+                                                        <div class="box-img-hover">
+                                                            <div class="type-lb">
+                                                                <p class="sale">- @j.GiamGia %</p>
+                                                            </div>
+                                                            <img src="@j.HinhDD" class="img-fluid" alt="Image">
+                                                            <div class="mask-icon">
+                                                                <ul>
+                                                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                                </ul>
+                                                                @using (Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                                                                {
+                                                                    <input type="hidden" name="MaSP" value="@j.MaSP" />
+                                                                    <button class="cart btn hvr-hover"style="text-align:center; margin-top: 160px" >Thêm vào giỏ hàng</button>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <div class="why-text" style="min-height: 113px; text-align:center">
+                                                            <h4><a href='@Url.Action("Index" , "ProductsDetail", new {MaSP = j.MaSP })'>@j.NdTomTat</a></h4>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <h4><span><del>@String.Format("{0:#,##0 đ }", j.GiaBan)</del></span></h4>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <h5>@String.Format("{0:#,##0 đ }", (j.GiaBan * 80) / 100)</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                if (n++ == 12)
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Shop Page -->
+</div>

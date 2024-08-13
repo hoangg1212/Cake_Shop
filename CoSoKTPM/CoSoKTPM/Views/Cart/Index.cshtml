@@ -1,0 +1,142 @@
+﻿@using CoSoKTPM.Models
+
+@{
+   ViewBag.Title = "Index";
+    CartShop x = ViewData["Cart"] as CartShop;
+}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Home")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Giỏ hàng</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start Cart  -->
+<div class="cart-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+                                foreach(CtDonHang i in x.SanPhamDC.Values)
+                                {
+                                    <tr>
+                                        <td class="thumbnail-img">
+                                            <a href="#"><img class="img-fluid" src="@Common.getImageOfProductByID(i.MaSP)" alt="" /></a>
+                                        </td>
+                                        <td class="name-pr">
+                                            <a href="#">@Common.getNameOfProductByID(i.MaSP)</a>
+                                        </td>
+                                        <td class="price-pr">
+                                            <p>@String.Format("{0:#,##0 đ }", (i.GiaBan * 80) / 100)</p>
+                                        </td>
+                                        
+                                        <td class="quantity-box">
+                                            <div>
+                                                <div class="input-group mb-3">
+                                                    @using (Html.BeginForm("Increase", "Cart", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="maSP" value="@i.MaSP" />
+                                                        <button class="cart_quantity_up"> + </button>
+                                                    }
+                                                    <input type="text" name="quantity" class="quantity form-control input-number" value="@i.SoLuong" min="1" max="100">
+                                                    @using (Html.BeginForm("Decrease", "Cart", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="maSP" value="@i.MaSP" />
+                                                        <button class="cart-detail-d"> - </button>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="total-pr">
+                                            <p>@String.Format("{0:#,##0 đ }", x.moneyOfOneProduct(i))</p>
+                                        </td>
+                                        <td class="delete-pr">
+                                            @using (Html.BeginForm("RemoveItem", "Cart", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="maSP" value="@i.MaSP" />
+                                                <button class="fas fa-times"></button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-lg-6 col-sm-6">
+                <div class="coupon-box">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control" placeholder="Vui lòng nhập mã khuyến mãi" aria-label="Coupon code" type="text">
+                        <div class="input-group-append">
+                            <button class="btn btn-theme" type="button">Mã khuyến mãi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="update-box">
+                    <input value="Cập nhật giỏ hàng" type="submit">
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-lg-8 col-sm-12"></div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="order-box">
+                    <h3>Thông tin đơn hàng</h3>
+                    <div class="d-flex">
+                        <h4>Tổng trị giá</h4>
+                        <div class="ml-auto font-weight-bold">@String.Format("{0:#,##0 đ }", x.totalOfCartShop())</div>
+                    </div>
+                    <div class="d-flex">
+                        <h4>Áp dụng mã giảm giá</h4>
+                        <div class="ml-auto font-weight-bold"> </div>
+                    </div>
+                    <div class="d-flex">
+                        <h4>Thuế</h4>
+                        <div class="ml-auto font-weight-bold">@String.Format("{0:#,##0 đ }", (x.totalOfCartShop() * 10) / 100)</div>
+                    </div>
+                    <div class="d-flex">
+                        <h4>Phí vận chuyển</h4>
+                        <div class="ml-auto font-weight-bold"> Freeship </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex gr-total">
+                        <h5>Tổng cộng</h5>
+                        <div class="ml-auto h5">@String.Format("{0:#,##0 đ }", x.totalOfCartShop() + (x.totalOfCartShop() * 10) / 100)</div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-12 d-flex shopping-box"><a href='@Url.Action("Index", "CheckOut")' class="ml-auto btn hvr-hover">Thanh toán</a> </div>
+        </div>
+
+    </div>
+</div>
+<!-- End Cart -->

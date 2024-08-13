@@ -1,0 +1,52 @@
+﻿@using CoSoKTPM.Models
+@{
+    ViewBag.Title = "Index";
+}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Home")'>Home</a></li>
+                    <li class="breadcrumb-item active">Danh sách bài viết</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start About Page  -->
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+            @{
+                foreach (BaiViet k in Common.getArticles(6))
+                {
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div class="blog-box">
+                                <div class="blog-img" style="text-align:center">
+                                    <img class="img-fluid" src="@k.HinhDD" alt="" />
+                                </div>
+                                <div class="blog-content">
+                                    <div class="date" style="text-align:center">
+                                        <p>@string.Format("{0: MMMM dd yyyy }", k.NgayDang) - @k.LoaiTin</p>
+                                    </div>
+                                    <div class="title-blog">
+                                        <h3 style="text-align:center"><a href="@Url.Action("Index", "ArticleContent", new { maBV = k.MaBV})"></a>@k.TenBV</h3>
+                                        <p>@k.NdTomTat</p>
+                                    </div>
+                                    <ul class="option-blog">
+                                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                                        <li><a href='@Url.Action("Index", "ArticleContent", new { maBV = k.MaBV})' title="Chi tiết"><i class="fas fa-eye"></i></a></li>
+                                        <li><a href="#"><i class="far fa-comments"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- End About Page -->

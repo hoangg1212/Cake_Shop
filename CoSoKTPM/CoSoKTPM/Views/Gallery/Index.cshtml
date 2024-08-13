@@ -1,0 +1,77 @@
+﻿@using CoSoKTPM.Models
+@{
+    ViewBag.Title = "Index";
+}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Home")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Danh mục hình ảnh</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+<!-- Start Gallery  -->
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Hình ảnh sản phẩm chúng tôi</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row special-list">
+            @{
+                int m = 0;
+                foreach (LoaiSP i in Common.getCategories())
+                {
+                    <div role="tabpanel @(m++ ==0?"active":"")" id="@i.MaLoai" aria-labelledby="@i.MaLoai">
+                        <div class="agile_ecommerce_tabs">
+                            @{
+                                int n = 1;
+                                foreach (SanPham j in Common.getProductsByLoaiSP(i.MaLoai))
+                                {
+                                    <div class="col-lg-3 col-md-6 special-grid top-featured">
+                                        <div class="products-single fix">
+                                            <div class="box-img-hover">
+                                                <div class="type-lb">
+                                                    <p class="sale">- @j.GiamGia %</p>
+                                                </div>
+                                                <img src="@j.HinhDD" class="img-fluid">
+                                                <div class="mask-icon">
+                                                    <ul>
+                                                        <li><a href='@Url.Action("Index" , "ProductsDetail", new {MaSP = j.MaSP })' data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                @using (Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                                                 {
+                                                    <div style="text-align:center">
+                                                        <input type="hidden" name="MaSP" value="@j.MaSP" />
+                                                        <button class="cart btn hvr-hover">Thêm vào giỏ hàng</button>
+                                                    </div>                            
+                                                 }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    if (n++ == 4)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- End Gallery  -->

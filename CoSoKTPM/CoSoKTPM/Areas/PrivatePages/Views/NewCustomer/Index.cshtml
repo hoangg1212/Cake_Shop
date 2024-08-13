@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Danh sách khách hàng mới</h4>
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href='@Url.Action("Index", "Dashboard")'>Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href='@Url.Action("Index", "NewCustomer")'>Khách hàng mới</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Dữ liệu</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                    <tr>
+                                        <th>Mã KH</th>
+                                        <th>Tên KH</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Email</th>
+                                        <th>SDT</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Giới tính</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>A1</td>
+                                        <td>Lê Huy Hoàng</td>
+                                        <td>12/12/2003</td>
+                                        <td>huyhoang1212.cke@gmail.com</td>
+                                        <td>0987784205</td>
+                                        <td>Ninh Thới - H.Cầu Kè - T.Trà Vinh</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A2</td>
+                                        <td>Lý Phú Chưởng</td>
+                                        <td>01/12/2003</td>
+                                        <td>lyphuchuong@gmail.com</td>
+                                        <td>0379018450</td>
+                                        <td>39 đường APĐ 1 - P.An Phú Đông - Q.12 - Tp.HCM</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A3</td>
+                                        <td>Võ Trí Đức</td>
+                                        <td>23/12/2003</td>
+                                        <td>votriduc@gmail.com</td>
+                                        <td>0984302291</td>
+                                        <td>Q.9 - Tp.HCM</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A4</td>
+                                        <td>Đào Lăng Gia Hào</td>
+                                        <td>27/07/2003</td>
+                                        <td>giahao@gmail.com</td>
+                                        <td>0984302291</td>
+                                        <td>Q.9 - Tp.HCM</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A5</td>
+                                        <td>Lê Tiến Đạt</td>
+                                        <td>09/12/2003</td>
+                                        <td>ltdat@gmail.com</td>
+                                        <td>0868804528</td>
+                                        <td>Q.10 - Tp.HCM</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A6</td>
+                                        <td>Trịnh Minh Nhựt</td>
+                                        <td>12/12/2003</td>
+                                        <td>minhnhut2303@gmail.com</td>
+                                        <td>0862269416</td>
+                                        <td>Ninh Thới - H.Cầu Kè - T.Trà Vinh</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A7</td>
+                                        <td>Nguyễn Trường Giang</td>
+                                        <td>12/12/2003</td>
+                                        <td>huyhoang1212.cke@gmail.com</td>
+                                        <td>0961114544</td>
+                                        <td>Phong Thạnh - H.Cầu Kè - T.Trà Vinh</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A8</td>
+                                        <td>Đỗ Hoàng Phúc</td>
+                                        <td>09/12/2003</td>
+                                        <td>dophuc@gmail.com</td>
+                                        <td>0328572011</td>
+                                        <td>An Phú Đông - Q.12 - Tp.HCM</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A9</td>
+                                        <td>Trần Thị Khánh Nhi</td>
+                                        <td>04/11/2003</td>
+                                        <td>khanhnhi@gmail.com</td>
+                                        <td>0765152365</td>
+                                        <td>An Phú Đông - Q.12 - Tp.HCM</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B1</td>
+                                        <td>Tạ Nguyễn Phụng Kiều</td>
+                                        <td>24/07/2003</td>
+                                        <td>phungkieu@gmail.com</td>
+                                        <td>0984302291</td>
+                                        <td>An Phú Đông - Q.12 - Tp.HCM</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B2</td>
+                                        <td>Trần Vĩnh Tín</td>
+                                        <td>24/08/2003</td>
+                                        <td>tranvinhtin@gmail.com</td>
+                                        <td>0386691109</td>
+                                        <td>69 Sa Thầy - Huyện Sa Thầy - Tỉnh Kon Tum</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B3</td>
+                                        <td>Nguyễn Triệu Vy</td>
+                                        <td>08/06/2006</td>
+                                        <td>ntrieuvy@gmail.com</td>
+                                        <td>0382154012</td>
+                                        <td>Định Thủy - H.Mỏ Cày Nam - T.Bến Tre</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B4</td>
+                                        <td>Vũ Thị Ngọc Như</td>
+                                        <td>13/06/2003</td>
+                                        <td>2100003296@nttu.edu.vn</td>
+                                        <td>0963196203</td>
+                                        <td>An Phú Đông - Q.12 - Tp.HCM</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B5</td>
+                                        <td>Lê Thị Thu Hồng</td>
+                                        <td>29/04/2003</td>
+                                        <td>2100005409Nttu.edu.vn</td>
+                                        <td>08388002504</td>
+                                        <td>43/46/29/27 Vườn Lài - APĐ - Q.12</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B6</td>
+                                        <td>Lý Văn Lập</td>
+                                        <td>23/09/2003</td>
+                                        <td>lap65885@gmail.com</td>
+                                        <td>0963643747</td>
+                                        <td>43/46/29/27 Vườn Lài - APĐ - Q.12</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

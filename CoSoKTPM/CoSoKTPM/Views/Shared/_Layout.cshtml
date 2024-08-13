@@ -1,0 +1,340 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Site Metas -->
+    <title>Huy Hoang Bakery</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="~/Images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/Images/apple-touch-icon.png">
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    @*
+       <!-- Bootstrap CSS -->
+       <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+       <!-- Site CSS -->
+       <link rel="stylesheet" href="~/Content/css/style.css">
+       <!-- Responsive CSS -->
+       <link rel="stylesheet" href="~/Content/css/responsive.css">
+       <!-- Custom CSS -->
+       <link rel="stylesheet" href="~/Content/css/custom.css">
+       <!-- Font Awesome -->
+       <link rel="stylesheet" href="~/Areas/PrivatePages/Content/css/font-awesome.min.css">
+       <!-- Ionicons -->
+       <link rel="stylesheet" href="~/Areas/PrivatePages/Content/css/ionicons.min.css">
+       <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+       <link rel="stylesheet" href="~/Areas/PrivatePages/Content/css/skins/_all-skins.min.css">
+    *@
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    @Styles.Render("~/bundles/css1")
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="custom-select-box">
+                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                            <option>đ VND</option>
+                            <option>$ USD</option>
+                            <option>€ EUR</option>
+                        </select>
+                    </div>
+                    <div class="right-phone-box">
+                        <p>SDT:  <a href="#"> 0987784205</a></p>
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-user s_color"></i> Tài khoản</a></li>
+                            <li><a href="https://goo.gl/maps/S8JyWqqUr935Auet7"><i class="fas fa-location-arrow"></i> Vị trí</a></li>
+                            <li><a href='@Url.Action("Index", "Login")'><i class="fas fa-headset"></i> Đăng nhập</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i> Giảm 20% cho toàn bộ mã khuyến mãi mua hàng: HBN123623FC
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Giảm 50%! mua ngay
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Nhanh tay đặt hàng để được nhận ưu đãi !!!
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Hỗ trợ tận tình - chu đáo
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> Sản phẩm chất lượng, an toàn với mọi lứa tuổi
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href='@Url.Action("Index", "Home")'><img src="~/Images/logoweb.png" class="logo" alt=""></a>
+                </div>
+                <!-- End Header Navigation -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                        <li class="nav-item active"><a class="nav-link" href='@Url.Action("Index", "Home")'>Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href='@Url.Action("Index", "AboutUS")'>Giới thiệu</a></li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle dropdown" data-toggle="dropdown">Sản phẩm</a>
+                            <ul class="dropdown-menu">
+                                <li><a href='@Url.Action("Index", "BanhNgot")'>Bánh Ngọt</a></li>
+                                <li><a href='@Url.Action("Index", "Banh")'>Bánh - Snack</a></li>
+                                <li><a href='@Url.Action("Index", "Keo")'>Kẹo</a></li>
+                                <li><a href='@Url.Action("Index", "TraiCaySay")'>Trái cây sấy</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href='@Url.Action("Index", "ArticleList")'>Bài viết</a></li>
+                        <li class="nav-item"><a class="nav-link" href='@Url.Action("Index", "Gallery")'>Danh sách hình ảnh</a></li>
+                        <li class="nav-item"><a class="nav-link" href='@Url.Action("Index", "ContactUS")'>Liên hệ</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                        <li class="#">
+                            <a class="nav-link" href='@Url.Action("Index", "Cart")'>
+                                <i class="fa fa-shopping-bag"></i>
+                                Giỏ hàng của tôi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+    @RenderBody()
+
+
+    <!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Thời gian kinh doanh</h3>
+                            <ul class="list-time">
+                                <li>- Tại cửa hàng:</li>
+                                <li>+ Thứ 2- thứ 7: 07.00 - 23.00</li>
+                                <li>+ Chủ nhật: 08.00 - 23.00</li>
+                                <li>- Trực tuyến:</li>
+                                <li>+ Hệ thống trực tuyến: 24/24</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Gửi mail</h3>
+                            <form class="newsletter-box">
+                                <div class="form-group">
+                                    <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <button class="btn hvr-hover" type="submit">Gửi</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-top-box">
+                            <h3>Truyền thông mạng xã hội</h3>
+                            <ul>
+                                <li><a href="https://www.facebook.com/"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>Giới thiệu về Huy Hoang Bakery</h4>
+                            <p>
+                                Shop Huy Hoang Bakery được thành lập nhằm phục vụ các sản phẩm bánh kẹo đến mọi mọi khách hàng. Ở đây chúng tôi cung cấp sản phẩm có thể khiến bạn nhớ về tuổi thơ của chính mình
+                                bao gồm các sản phẩm Snack, kẹo socola, trái cây sấy,...Sản phẩm chúng tôi được nhập và đã được kiểm tra an toàn thực phẩm, nhằm bảo đảm an toàn cho khách hàng. Huy Hoang Bakery luôn
+                                luôn đặt nhu cầu và an toàn khách hàng lên hàng đầu. Vì vậy đừng chần chừ gì nữa mà hãy đến ngay với Huy Hoang Bakery đi thôi nào.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Thông tin liên hệ</h4>
+                            <ul>
+                                <li><a href="#">Về chúng tôi</a></li>
+                                <li><a href="#">Dịch vụ khách hàng</a></li>
+                                <li><a href="#">Sơ đồ trang web của chúng tôi</a></li>
+                                <li><a href="#">Điều khoản &amp; điều kiện</a></li>
+                                <li><a href="#">Chính sách bảo mật</a></li>
+                                <li><a href="#">Thông tin giao hàng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Liên hệ</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Địa chỉ: 331 Ql1A, An Phú Đông, Quận 12, Thành phố Hồ Chí Minh</p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>SDT: <a href="tel: 0987784205">0987784205</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">2100002281@nttu.edu.vn</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">
+            DH Nguyễn Tất Thành &copy; CNTT _ <a href="#">Lê Huy Hoàng</a> _
+            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">2100002281</a>
+        </p>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    @*
+            <!-- ALL JS FILES -->
+            <script src="~/Content/js/jquery-3.2.1.min.js"></script>
+            <script src="~/Content/js/popper.min.js"></script>
+            <script src="~/Content/js/bootstrap.min.js"></script>
+            <!-- ALL PLUGINS -->
+            <script src="~/Content/js/jquery.superslides.min.js"></script>
+            <script src="~/Content/js/bootstrap-select.js"></script>
+            <script src="~/Content/js/inewsticker.js"></script>
+            <script src="~/Content/js/bootsnav.js"></script>
+            <script src="~/Content/js/images-loded.min.js"></script>
+            <script src="~/Content/js/isotope.min.js"></script>
+            <script src="~/Content/js/owl.carousel.min.js"></script>
+            <script src="~/Content/js/baguetteBox.min.js"></script>
+            <script src="~/Content/js/form-validator.min.js"></script>
+            <script src="~/Content/js/contact-form-script.js"></script>
+            <script src="~/Content/js/custom.js"></script>
+        <!-- jQuery 3 -->
+        <script src="~/Areas/PrivatePages/Content/js/jquery.min.js"></script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="~/Areas/PrivatePages/Content/js/bootstrap.min.js"></script>
+        <!-- FastClick -->
+        <script src="~/Areas/PrivatePages/Content/js/fastclick.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/Areas/PrivatePages/Content/js/adminlte.min.js"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script src="~/Areas/PrivatePages/Content/js/demo.js"></script>
+    *@
+
+    @Scripts.Render("~/bundle/scripts1")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        var citis = document.getElementById("city");
+        var districts = document.getElementById("district");
+        var wards = document.getElementById("ward");
+        var Parameter = {
+            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+            method: "GET",
+            responseType: "application/json",
+        };
+        var promise = axios(Parameter);
+        promise.then(function (result) {
+            renderCity(result.data);
+        });
+
+        function renderCity(data) {
+            for (const x of data) {
+                citis.options[citis.options.length] = new Option(x.Name, x.Id);
+            }
+            citis.onchange = function () {
+                district.length = 1;
+                ward.length = 1;
+                if (this.value != "") {
+                    const result = data.filter(n => n.Id === this.value);
+
+                    for (const k of result[0].Districts) {
+                        district.options[district.options.length] = new Option(k.Name, k.Id);
+                    }
+                }
+            };
+            district.onchange = function () {
+                ward.length = 1;
+                const dataCity = data.filter((n) => n.Id === citis.value);
+                if (this.value != "") {
+                    const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+                    for (const w of dataWards) {
+                        wards.options[wards.options.length] = new Option(w.Name, w.Id);
+                    }
+                }
+            };
+        }
+    </script>
+</body>
+</html>
